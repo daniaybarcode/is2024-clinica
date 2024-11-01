@@ -2,27 +2,30 @@ package com.grupo3.is2024clinica.model;
 
 import jakarta.persistence.*;
 import lombok.Getter;
-import lombok.Setter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.time.LocalDate;
 
 @Entity
-@Table(name = "Medico")
+@Table(name = "Paciente")
 @Getter
 @Setter
 @NoArgsConstructor
-public class Medico {
+public class Paciente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idMedico;
-
-    @Column(nullable = false, unique = true)
-    private String matricula;
-
-    @Column(nullable = false)
-    private String especialidad;
+    private Long idPaciente;
 
     @OneToOne
     @JoinColumn(name = "idPersona", referencedColumnName = "idPersona")
     private Persona persona;
+
+    @Column(length = 20)
+    private String pasaporte;
+
+    private LocalDate fechaDeFallecimiento;
+
+    private String estado;
 }

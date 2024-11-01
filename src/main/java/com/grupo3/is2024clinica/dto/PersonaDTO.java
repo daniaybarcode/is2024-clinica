@@ -4,24 +4,33 @@ package com.grupo3.is2024clinica.dto;
 import com.grupo3.is2024clinica.model.Persona;
 
 public class PersonaDTO {
-
+    private Long idPersona;
     private Long cuil;
     private String nombre;
     private String apellido;
-    private String domicilio;  // Nueva propiedad
-    private String telefono;    // Nueva propiedad
-    private String email;       // Nueva propiedad
-    private String fechaDeNacimiento; // Nueva propiedad
+    private String domicilio;
+    private String telefono;
+    private String email;
+    private String fechaDeNacimiento;
 
     // Constructor que transforma la entidad Persona en un DTO
     public PersonaDTO(Persona persona) {
+        this.idPersona = persona.getIdPersona();
         this.cuil = (persona.getCuil() != null) ? persona.getCuil() : 0L; // Manejo de null
         this.nombre = persona.getNombre();
         this.apellido = persona.getApellido();
-        this.domicilio = persona.getDomicilio();   // Manejo de domicilio
-        this.telefono = persona.getTelefono();     // Manejo de telefono
-        this.email = persona.getEmail();           // Manejo de email
-        this.fechaDeNacimiento = persona.getFechaDeNacimiento(); // Manejo de fechaDeNacimiento
+        this.domicilio = persona.getDomicilio();
+        this.telefono = persona.getTelefono();
+        this.email = persona.getEmail();
+        this.fechaDeNacimiento = persona.getFechaDeNacimiento();
+    }
+
+    public Long getIdPersona() {
+        return idPersona;
+    }
+
+    public void setIdPersona(Long idPersona) {
+        this.idPersona = idPersona;
     }
 
     // Getters y setters

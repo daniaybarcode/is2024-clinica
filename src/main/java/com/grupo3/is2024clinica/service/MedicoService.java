@@ -1,7 +1,6 @@
-package com.grupo3.is2024clinica.dto;
+package com.grupo3.is2024clinica.service;
 
-
-
+import com.grupo3.is2024clinica.dto.MedicoDTO;
 import com.grupo3.is2024clinica.model.Medico;
 import com.grupo3.is2024clinica.model.Persona;
 import com.grupo3.is2024clinica.repository.MedicoRepository;
@@ -38,7 +37,7 @@ public class MedicoService {
 
     @Transactional
     public MedicoDTO createMedico(MedicoDTO medicoDTO) {
-        Persona persona = personaRepository.findById(medicoDTO.getCuilPersona())
+        Persona persona = personaRepository.findById(medicoDTO.getIdPersona()) // Utilizar idPersona
                 .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
 
         Medico medico = new Medico();
@@ -55,7 +54,7 @@ public class MedicoService {
         Medico medico = medicoRepository.findById(idMedico)
                 .orElseThrow(() -> new RuntimeException("Médico no encontrado"));
 
-        Persona persona = personaRepository.findById(medicoDTO.getCuilPersona())
+        Persona persona = personaRepository.findById(medicoDTO.getIdPersona()) // Utilizar idPersona
                 .orElseThrow(() -> new RuntimeException("Persona no encontrada"));
 
         medico.setMatricula(medicoDTO.getMatricula());
@@ -76,7 +75,7 @@ public class MedicoService {
         dto.setIdMedico(medico.getIdMedico());
         dto.setMatricula(medico.getMatricula());
         dto.setEspecialidad(medico.getEspecialidad());
-        dto.setCuilPersona(medico.getPersona().getCuil());
+        dto.setIdPersona(medico.getPersona().getIdPersona()); // Asignar idPersona
         return dto;
     }
 }
